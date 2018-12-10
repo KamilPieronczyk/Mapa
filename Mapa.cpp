@@ -6,12 +6,9 @@ int main()
 	Miasta miasta;
 	Mapa mapa;
 	string file = "Drogi.txt";
+	string file2 = "SzukaneTrasy.txt";
 	mapa.WczytajMiasta(file, miasta);
 	mapa.WczytajDrogi(file, miasta);
-	string miasto1 = "Tarnow";
-	string miasto2 = "Krakow";
-	Trasa trasa;
-	if (!mapa.SzukajTrasy2(miasta, miasto1, miasto2, trasa)) cout << "nieznalezione" << endl;
-	cout << trasa.dlugosc << endl;
-	cout << trasa.trasa.size() << endl;
+	mapa.WczytajTrasy(file2);
+	mapa.WytyczTrasy(miasta);
 }

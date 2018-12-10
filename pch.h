@@ -59,8 +59,11 @@ private:
 class Mapa
 {
 public:
+	Lista<Trasa> trasy;
 	bool WczytajMiasta(string & nazwaPliku, Miasta & miasta);
 	bool WczytajDrogi(string & nazwaPliku, Miasta & miasta);
+	bool WczytajTrasy(string & nazwaPliku);
+	bool WytyczTrasy(Miasta & miasta);
 	bool SzukajTrasy(Miasta & miasta, string & miasto1, string & miasto2, int dlugosc = 0);
 	bool SzukajTrasy2(Miasta & miasta, string & miasto1, string & miasto2, Trasa & trasa);
 };
