@@ -33,3 +33,17 @@ Miasto * & Miasta::operator[](string nazwa)
 		}
 	}
 }
+
+void Miasta::PrzygotujMiasta()
+{
+	this->PrzygotujMiasta(this->pHead);
+}
+
+void Miasta::PrzygotujMiasta(Miasto *& miasto)
+{
+	if (miasto != nullptr) {
+		miasto->odwiedzone = false;
+		this->PrzygotujMiasta(miasto->pLewy);
+		this->PrzygotujMiasta(miasto->pPrawy);
+	}
+}

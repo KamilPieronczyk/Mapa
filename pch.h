@@ -52,7 +52,9 @@ public:
 	Miasto * pHead = nullptr;
 	int size();
 	Miasto *& operator[](string nazwa);
+	void PrzygotujMiasta();
 private:
+	void PrzygotujMiasta(Miasto *& miasto);
 	int size(Miasto * pHead);
 };
 

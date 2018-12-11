@@ -56,15 +56,18 @@ bool Mapa::WczytajTrasy(string & nazwaPliku)
 
 bool Mapa::WytyczTrasy(Miasta & miasta)
 {
-	for (auto trasa : this->trasy) {
+	for (auto & trasa : this->trasy) {
 		this->SzukajTrasy2(miasta, trasa.miastoA, trasa.miastoB, trasa);
+		miasta.PrzygotujMiasta();
 	}
 	for (auto trasa : this->trasy) {
-		cout << "trasa: " << trasa.miastoA << " --> " << trasa.miastoB << "(" << trasa.dlugosc << "km):" << endl;
+		cout << "trasa: " << trasa.miastoA << " --> " << trasa.miastoB << " (" << trasa.dlugosc << "km):" << endl << endl;
 		for (auto droga : trasa.trasa) {
-			cout << droga.miastoA->nazwa << " --> " << droga.miastoB->nazwa << droga.odleglosc << "km" << endl;
+			cout << "	" << droga.miastoA->nazwa << " --> " << droga.miastoB->nazwa << " " << droga.odleglosc << "km" << endl;
 		}
 		cout << endl;
+		cout << endl;
+
 	}
 	return true;
 }
@@ -83,9 +86,6 @@ bool Mapa::SzukajTrasy2(Miasta & miasta, string & miasto1, string & miasto2, Tra
 		if (trasa.dlugosc == 0 || trasa.mozliwaDlugosc < trasa.dlugosc) {
 			trasa.dlugosc = trasa.mozliwaDlugosc;
 			trasa.trasa = trasa.mozliwaTrasa;
-			for (auto droga : trasa.trasa) {
-				cout << droga.miastoA->nazwa << " --> " << droga.miastoB->nazwa << droga.odleglosc << "km" << endl;
-			}
 			trasa.mozliwaTrasa.pHead = nullptr;
 			for (auto odcinekTrasy : trasa.trasa) {
 				trasa.mozliwaTrasa.push_back(odcinekTrasy);
