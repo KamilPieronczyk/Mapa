@@ -1,6 +1,6 @@
 #include "pch.h"
 
-bool Mapa::WczytajMape(string & nazwaPliku, Miasta & miasta)
+bool Mapa::WczytajMape(string & nazwaPliku)
 {
 	ifstream plik(nazwaPliku);
 	if (!plik.is_open()) return false;
@@ -14,11 +14,12 @@ bool Mapa::WczytajMape(string & nazwaPliku, Miasta & miasta)
 		getline(ss, miasto2, ' ');
 		getline(ss, sdlugosc, ' ');
 		dlugosc = stoi(sdlugosc);
-		if (!miasta[miasto1]) miasta[miasto1] = new Miasto{ miasto1 };
-		if (!miasta[miasto2]) miasta[miasto2] = new Miasto{ miasto2 };
-		miasta[miasto1]->drogi.push_back({ dlugosc, miasta[miasto2] });
+		if (!this->miasta[miasto1]) this->miasta[miasto1] = new Miasto{ miasto1 };
+		if (!this->miasta[miasto2]) this->miasta[miasto2] = new Miasto{ miasto2 };
+		this->miasta[miasto1]->drogi.push_back({ dlugosc, this->miasta[miasto2] });
 		ss.clear();
 	}
+	plik.close();
 	return true;
 }
 
@@ -38,11 +39,11 @@ bool Mapa::WczytajTrasy(string & nazwaPliku)
 	return true;
 }
 
-bool Mapa::WytyczTrasy(Miasta & miasta)
+bool Mapa::WytyczTrasy()
 {
 	for (auto & trasa : this->trasy) {
-		this->SzukajTrasy(miasta, trasa.miastoA, trasa.miastoB, trasa);
-		miasta.PrzygotujMiasta();
+		this->SzukajTrasy(trasa.miastoA, trasa.miastoB, trasa);
+		this->miasta.PrzygotujMiasta();
 	}
 	for (auto trasa : this->trasy) {
 		cout << "trasa: " << trasa.miastoA << " --> " << trasa.miastoB << " (" << trasa.dlugosc << "km):" << endl << endl;
@@ -63,7 +64,7 @@ bool szukajwLiscie(const string & szukane,Trasa & trasa2) {
 	return false;
 };
 
-bool Mapa::SzukajTrasy(Miasta & miasta, string & miasto1, string & miasto2, Trasa & trasa)
+bool Mapa::SzukajTrasy(string & miasto1, string & miasto2, Trasa & trasa)
 {
 	bool znalezione = false;	
 	if (miasto1 == miasto2) {
@@ -79,13 +80,13 @@ bool Mapa::SzukajTrasy(Miasta & miasta, string & miasto1, string & miasto2, Tras
 	}
 	else {
 		trasa.mozliwaTrasa.push_back({miasta[miasto1]});
-		for (auto droga : miasta[miasto1]->drogi) {
+		for (auto droga : this->miasta[miasto1]->drogi) {
 			if (trasa.dlugosc > trasa.mozliwaDlugosc + droga.dlugosc) continue;
 			if (!droga.miasto->odwiedzone && !szukajwLiscie(droga.miasto->nazwa, trasa)) {
 				trasa.mozliwaTrasa.top().miastoB = droga.miasto;
 				trasa.mozliwaTrasa.top().odleglosc = droga.dlugosc;
 				trasa.mozliwaDlugosc += droga.dlugosc;
-				if (this->SzukajTrasy(miasta, droga.miasto->nazwa, miasto2, trasa)) {
+				if (this->SzukajTrasy(droga.miasto->nazwa, miasto2, trasa)) {
 					znalezione = true;
 				}
 				else {
@@ -97,4 +98,14 @@ bool Mapa::SzukajTrasy(Miasta & miasta, string & miasto1, string & miasto2, Tras
 		trasa.mozliwaTrasa.pop();
 	}
 	return znalezione;
+}
+
+void Mapa::remove()
+{
+	for (auto trasa : this->trasy) {
+		trasa.mozliwaTrasa.remove();
+		trasa.trasa.remove();
+	}
+	this->trasy.remove();
+	this->miasta.remove();
 }

@@ -9,11 +9,15 @@
 #ifndef PCH_H
 #define PCH_H
 
+#define _CRTDBG_MAP_ALLOC
+
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <sstream>
 #include "Lista.h"
+#include <cstdlib>
+#include <crtdbg.h>
 
 using namespace std;
 
@@ -53,19 +57,25 @@ public:
 	int size();
 	Miasto *& operator[](string nazwa);
 	void PrzygotujMiasta();
+	void remove();
 private:
 	void PrzygotujMiasta(Miasto *& miasto);
 	int size(Miasto * pHead);
+	void remove(Miasto * & miasto);
 };
 
 class Mapa
 {
 public:
+	Miasta miasta;
 	Lista<Trasa> trasy;
-	bool WczytajMape(string & nazwaPliku, Miasta & miasta);
+	bool WczytajMape(string & nazwaPliku);
 	bool WczytajTrasy(string & nazwaPliku);
-	bool WytyczTrasy(Miasta & miasta);
-	bool SzukajTrasy(Miasta & miasta, string & miasto1, string & miasto2, Trasa & trasa);
+	bool WytyczTrasy();
+	bool SzukajTrasy(string & miasto1, string & miasto2, Trasa & trasa);
+	void remove();
 };
+
+#define new new(_NORMAL_BLOCK, __FILE__, __LINE__)
 
 #endif //PCH_H

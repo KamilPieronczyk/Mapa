@@ -1,5 +1,4 @@
 #include "pch.h"
-
 int Miasta::size()
 {
 	return this->size(this->pHead);
@@ -45,5 +44,22 @@ void Miasta::PrzygotujMiasta(Miasto *& miasto)
 		miasto->odwiedzone = false;
 		this->PrzygotujMiasta(miasto->pLewy);
 		this->PrzygotujMiasta(miasto->pPrawy);
+	}
+}
+
+void Miasta::remove()
+{
+	this->remove(this->pHead);
+}
+
+void Miasta::remove(Miasto * & pRoot)
+{
+	if (pRoot)
+	{
+		pRoot->drogi.remove();
+		this->remove(pRoot->pLewy);
+		this->remove(pRoot->pPrawy);
+		delete pRoot;
+		pRoot = nullptr;
 	}
 }

@@ -1,5 +1,9 @@
 #pragma once
+#define _CRTDBG_MAP_ALLOC
 #include <iostream>
+#include <cstdlib>
+#include <crtdbg.h>
+
 using namespace std;
 
 template<typename T>
@@ -38,6 +42,8 @@ private:
 	OstatnioSzukanyElement ostatnioSzukanyElement;	
 	Element * ElementNumer(const int id);
 };
+
+#define new new(_NORMAL_BLOCK, __FILE__, __LINE__)
 
 template<typename T>
 int Lista<T>::size()
@@ -153,4 +159,6 @@ inline void Lista<T>::remove()
 		this->pop();
 	}
 }
+
+
 
