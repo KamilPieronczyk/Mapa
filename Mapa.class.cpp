@@ -1,18 +1,45 @@
 #include "pch.h"
-
-bool Mapa::WczytajMape(string & nazwaPliku)
+#include "MyException.h"
+void Mapa::Inicjalizacja(int argc, char *argv[])
 {
-	ifstream plik(nazwaPliku);
-	if (!plik.is_open()) return false;
+	int a = 0;
+	for (int i = 1; i < argc; i++) {
+		if (argv[i + 1]) {
+			switch (argv[i][1]){
+				case 'd':
+					this->Drogi = argv[i + 1];
+					a++;
+					break;
+				case 't':
+					this->SzukaneTrasy = argv[i + 1];
+					a++;
+					break;
+				case 'o':
+					a++;
+					this->Trasy = argv[i + 1];
+					break;
+			}
+		}
+	}
+	if (a != 3) {
+		throw (MyException(MyException::IncorectParameters, ""));
+	}
+	
+}
+bool Mapa::WczytajMape()
+{
+	ifstream plik(this->Drogi);
+	if (!plik.is_open()) { throw(MyException(MyException::FileDoesNotExist, this->Drogi)); return false; };
 	string s1, s2, miasto1, miasto2, sdlugosc;
 	stringstream ss;
 	int dlugosc;
 	int i = 0;
+	string exceptionMessage = "Bledy w pliku wejsciowym - " + this->Drogi;
 	while (getline(plik, s1)) {
 		ss << s1;
-		getline(ss, miasto1, ' ');
-		getline(ss, miasto2, ' ');
-		getline(ss, sdlugosc, ' ');
+		if (!getline(ss, miasto1, ' ')) { throw(MyException(MyException::ErrorsInInputFile, this->Drogi)); return false; };
+		if (!getline(ss, miasto2, ' ')) { throw(MyException(MyException::ErrorsInInputFile, this->Drogi)); return false; };
+		if (!getline(ss, sdlugosc, ' ')) { throw(MyException(MyException::ErrorsInInputFile, this->Drogi)); return false; };
 		dlugosc = stoi(sdlugosc);
 		if (!this->miasta[miasto1]) this->miasta[miasto1] = new Miasto{ miasto1 };
 		if (!this->miasta[miasto2]) this->miasta[miasto2] = new Miasto{ miasto2 };
@@ -23,16 +50,17 @@ bool Mapa::WczytajMape(string & nazwaPliku)
 	return true;
 }
 
-bool Mapa::WczytajTrasy(string & nazwaPliku)
+bool Mapa::WczytajTrasy()
 {
-	ifstream plik(nazwaPliku);
-	if (!plik.is_open()) return false;
+	ifstream plik(this->SzukaneTrasy);
+	if (!plik.is_open()) { throw(MyException(MyException::FileDoesNotExist, this->SzukaneTrasy)); return false; };
 	string s, miasto1, miasto2;
 	stringstream ss;
+	string exceptionMessage = "Bledy w pliku wejsciowym - " + this->SzukaneTrasy;
 	while (getline(plik, s)) {
 		ss << s;
-		getline(ss, miasto1, ' ');
-		getline(ss, miasto2, ' ');
+		if (!getline(ss, miasto1, ' ')) { throw(MyException(MyException::ErrorsInInputFile, this->SzukaneTrasy)); return false; };
+		if (!getline(ss, miasto2, ' ')) { throw(MyException(MyException::ErrorsInInputFile, this->SzukaneTrasy)); return false; };
 		this->trasy.push_back({ miasto1, miasto2 });
 		ss.clear();
 	}
@@ -44,15 +72,6 @@ bool Mapa::WytyczTrasy()
 	for (auto & trasa : this->trasy) {
 		this->SzukajTrasy(trasa.miastoA, trasa.miastoB, trasa);
 		this->miasta.PrzygotujMiasta();
-	}
-	for (auto trasa : this->trasy) {
-		cout << "trasa: " << trasa.miastoA << " --> " << trasa.miastoB << " (" << trasa.dlugosc << "km):" << endl << endl;
-		for (auto droga : trasa.trasa) {
-			cout << "	" << droga.miastoA->nazwa << " --> " << droga.miastoB->nazwa << " " << droga.odleglosc << "km" << endl;
-		}
-		cout << endl;
-		cout << endl;
-
 	}
 	return true;
 }
@@ -100,6 +119,24 @@ bool Mapa::SzukajTrasy(string & miasto1, string & miasto2, Trasa & trasa)
 	return znalezione;
 }
 
+void Mapa::WypiszTrasy(ostream & stream)
+{
+	for (auto trasa : this->trasy) {
+		if (trasa.trasa.size() > 0) {
+			stream << "trasa: " << trasa.miastoA << " --> " << trasa.miastoB << " (" << trasa.dlugosc << "km):" << endl << endl;
+			for (auto droga : trasa.trasa) {
+				stream << "	" << droga.miastoA->nazwa << " --> " << droga.miastoB->nazwa << " " << droga.odleglosc << "km" << endl;
+			}
+		}
+		else {
+			stream << "trasa: " << trasa.miastoA << " --> " << trasa.miastoB << endl;
+			stream << "	" << "TRASA NIEMOZLIWA DO WYZNACZENIA" << endl;
+		}
+		stream << endl;
+		stream << endl;
+	}
+}
+
 void Mapa::remove()
 {
 	for (auto trasa : this->trasy) {
@@ -108,4 +145,5 @@ void Mapa::remove()
 	}
 	this->trasy.remove();
 	this->miasta.remove();
+	this->Drogi.clear();
 }

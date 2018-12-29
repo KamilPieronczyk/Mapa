@@ -77,7 +77,6 @@ template<typename T>
 T & Lista<T>::top()
 {
 	if (this->size() == 0) {
-		cout << "Error: Lista::top() - lista jest pusta" << endl;
 		T temp;
 		return temp;
 	}		

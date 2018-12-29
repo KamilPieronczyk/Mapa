@@ -152,12 +152,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\%40_Programowanie\C++\Mapa\Mapa\Lista.h" />
+    <ClInclude Include="..\..\..\..\%40_Programowanie\C++\Mapa\Mapa\MyException.h" />
     <ClInclude Include="..\..\..\..\%40_Programowanie\C++\Mapa\Mapa\pch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\%40_Programowanie\C++\Mapa\Mapa\Mapa.class.cpp" />
     <ClCompile Include="..\..\..\..\%40_Programowanie\C++\Mapa\Mapa\Mapa.cpp" />
     <ClCompile Include="..\..\..\..\%40_Programowanie\C++\Mapa\Mapa\Miasta.class.cpp" />
+    <ClCompile Include="..\..\..\..\%40_Programowanie\C++\Mapa\Mapa\MyException.cpp" />
     <ClCompile Include="..\..\..\..\%40_Programowanie\C++\Mapa\Mapa\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

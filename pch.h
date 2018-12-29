@@ -18,6 +18,7 @@
 #include "Lista.h"
 #include <cstdlib>
 #include <crtdbg.h>
+#include <stdexcept>
 
 using namespace std;
 
@@ -69,10 +70,13 @@ class Mapa
 public:
 	Miasta miasta;
 	Lista<Trasa> trasy;
-	bool WczytajMape(string & nazwaPliku);
-	bool WczytajTrasy(string & nazwaPliku);
+	string Drogi, SzukaneTrasy, Trasy;
+	void Inicjalizacja(int argc,char *argv[]);
+	bool WczytajMape();
+	bool WczytajTrasy();
 	bool WytyczTrasy();
 	bool SzukajTrasy(string & miasto1, string & miasto2, Trasa & trasa);
+	void WypiszTrasy(ostream & stream);
 	void remove();
 };
 

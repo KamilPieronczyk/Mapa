@@ -1,22 +1,29 @@
 ﻿#include "pch.h"
 #include "Lista.h"
+#include "MyException.h"
 
-int main()
+int main(int argc, char *argv[])
 {
 	_CrtMemState s1, s2, s3;
 	_CrtMemCheckpoint(&s1);
 
 	Mapa mapa;
-	string * file = new string("Drogi.txt");
-	string * file2 = new string( "SzukaneTrasy.txt");
 
-	mapa.WczytajMape(*file);
-	mapa.WczytajTrasy(*file2);
+	try {
+		mapa.Inicjalizacja(argc, argv);
+		mapa.WczytajMape();
+		mapa.WczytajTrasy();
+	}
+	catch (const MyException & e){
+		cout << e.what() << endl;
+		return 0;
+	}
+	ofstream plik(mapa.Trasy);
+
 	mapa.WytyczTrasy();
+	mapa.WypiszTrasy(cout);
+	mapa.WypiszTrasy(plik);
 	mapa.remove();
-
-	delete file;
-	delete file2;
 
 	_CrtMemCheckpoint(&s2);
 	if (_CrtMemDifference(&s3, &s1, &s2))

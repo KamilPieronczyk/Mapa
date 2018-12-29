@@ -21,6 +21,9 @@
     <ClInclude Include="..\..\..\..\%40_Programowanie\C++\Mapa\Mapa\Lista.h">
       <Filter>Pliki nagłówkowe</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\%40_Programowanie\C++\Mapa\Mapa\MyException.h">
+      <Filter>Pliki nagłówkowe</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\%40_Programowanie\C++\Mapa\Mapa\pch.cpp">
@@ -33,6 +36,9 @@
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\..\%40_Programowanie\C++\Mapa\Mapa\Miasta.class.cpp">
+      <Filter>Pliki źródłowe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\%40_Programowanie\C++\Mapa\Mapa\MyException.cpp">
       <Filter>Pliki źródłowe</Filter>
     </ClCompile>
   </ItemGroup>
