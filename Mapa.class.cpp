@@ -36,11 +36,21 @@ bool Mapa::WczytajMape()
 	int i = 0;
 	string exceptionMessage = "Bledy w pliku wejsciowym - " + this->Drogi;
 	while (getline(plik, s1)) {
+		if (strlen(s1.c_str()) == 0) continue;
 		ss << s1;
-		if (!getline(ss, miasto1, ' ')) { throw(MyException(MyException::ErrorsInInputFile, this->Drogi)); return false; };
-		if (!getline(ss, miasto2, ' ')) { throw(MyException(MyException::ErrorsInInputFile, this->Drogi)); return false; };
-		if (!getline(ss, sdlugosc, ' ')) { throw(MyException(MyException::ErrorsInInputFile, this->Drogi)); return false; };
-		dlugosc = stoi(sdlugosc);
+		miasto1.clear();
+		miasto2.clear();
+		sdlugosc.clear();
+		try {
+			getline(ss, miasto1, ' ');
+			getline(ss, miasto2, ' ');
+			getline(ss, sdlugosc);
+			dlugosc = stoi(sdlugosc);
+			if (miasto1.length() == 0 || miasto2.length() == 0) throw(0);
+		} catch (...) {
+			throw(MyException(MyException::ErrorsInInputFile, this->Drogi)); 
+			return false;
+		}
 		if (!this->miasta[miasto1]) this->miasta[miasto1] = new Miasto{ miasto1 };
 		if (!this->miasta[miasto2]) this->miasta[miasto2] = new Miasto{ miasto2 };
 		this->miasta[miasto1]->drogi.push_back({ dlugosc, this->miasta[miasto2] });
@@ -56,11 +66,19 @@ bool Mapa::WczytajTrasy()
 	if (!plik.is_open()) { throw(MyException(MyException::FileDoesNotExist, this->SzukaneTrasy)); return false; };
 	string s, miasto1, miasto2;
 	stringstream ss;
-	string exceptionMessage = "Bledy w pliku wejsciowym - " + this->SzukaneTrasy;
 	while (getline(plik, s)) {
+		if (strlen(s.c_str()) == 0) continue;
 		ss << s;
-		if (!getline(ss, miasto1, ' ')) { throw(MyException(MyException::ErrorsInInputFile, this->SzukaneTrasy)); return false; };
-		if (!getline(ss, miasto2, ' ')) { throw(MyException(MyException::ErrorsInInputFile, this->SzukaneTrasy)); return false; };
+		miasto1.clear();
+		miasto2.clear();
+		try {			
+			getline(ss, miasto1, ' ');
+			getline(ss, miasto2);			
+			if (miasto1.empty() || miasto2.empty()) throw(0);
+		} catch (...) {
+			throw(MyException(MyException::ErrorsInInputFile, this->SzukaneTrasy)); 
+			return false;
+		}
 		this->trasy.push_back({ miasto1, miasto2 });
 		ss.clear();
 	}

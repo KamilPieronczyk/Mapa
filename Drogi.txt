@@ -1,4 +1,4 @@
-Katowice Krakow 70
+Katowice Krakow 70    
 Krakow Tarnow 70
 Tarnow Jaslo 50
 Katowice Gliwice 22
