@@ -1,0 +1,134 @@
+\hypertarget{class_mapa}{}\section{Dokumentacja klasy Mapa}
+\label{class_mapa}\index{Mapa@{Mapa}}
+\subsection*{Metody publiczne}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_mapa_a4f087082b229de353eed60aa5732cc9e}{Inicjalizacja}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\item 
+bool \mbox{\hyperlink{class_mapa_a6651ec8e3fce840ae5f8e0d4b2c551b8}{Wczytaj\+Mape}} ()
+\item 
+bool \mbox{\hyperlink{class_mapa_a898b171c3b98692cb71ced3959ef4702}{Wczytaj\+Trasy}} ()
+\item 
+bool \mbox{\hyperlink{class_mapa_a01487ae9138832312922ea23577fcac4}{Wytycz\+Trasy}} ()
+\item 
+bool \mbox{\hyperlink{class_mapa_a80b6add069f75b6943244c2933d97b6a}{Szukaj\+Trasy}} (string \&miasto1, string \&miasto2, \mbox{\hyperlink{struct_trasa}{Trasa}} \&trasa)
+\item 
+void \mbox{\hyperlink{class_mapa_a4205fc2f39ebac415f9b76129a0c2c1d}{Wypisz\+Trasy}} (ostream \&stream)
+\item 
+void \mbox{\hyperlink{class_mapa_a5146461b9ba729d9824e6b0f2c3cd312}{remove}} ()
+\end{DoxyCompactItemize}
+\subsection*{Atrybuty publiczne}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_miasta}{Miasta}} \mbox{\hyperlink{class_mapa_a114a3a690e8eeea081e8ef25bb4561c9}{miasta}}
+\item 
+\mbox{\hyperlink{class_lista}{Lista}}$<$ \mbox{\hyperlink{struct_trasa}{Trasa}} $>$ \mbox{\hyperlink{class_mapa_aad92737082c0fc9bdc3cd16177b08bd3}{trasy}}
+\item 
+\mbox{\Hypertarget{class_mapa_ac4c162ab93ee5bdd889f7b806caf12c2}\label{class_mapa_ac4c162ab93ee5bdd889f7b806caf12c2}} 
+string {\bfseries Drogi}
+\item 
+\mbox{\Hypertarget{class_mapa_a1e4dfbdc5c53aed8152714185f4c8739}\label{class_mapa_a1e4dfbdc5c53aed8152714185f4c8739}} 
+string {\bfseries Szukane\+Trasy}
+\item 
+string \mbox{\hyperlink{class_mapa_a1c030bb78d2e00479a4a0341540b48fe}{Trasy}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Dokumentacja funkcji składowych}
+\mbox{\Hypertarget{class_mapa_a4f087082b229de353eed60aa5732cc9e}\label{class_mapa_a4f087082b229de353eed60aa5732cc9e}} 
+\index{Mapa@{Mapa}!Inicjalizacja@{Inicjalizacja}}
+\index{Inicjalizacja@{Inicjalizacja}!Mapa@{Mapa}}
+\subsubsection{\texorpdfstring{Inicjalizacja()}{Inicjalizacja()}}
+{\footnotesize\ttfamily void Mapa\+::\+Inicjalizacja (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+Funckja inicjalizująca program, sprawdza parametry wejściowe 
+\begin{DoxyParams}{Parametry}
+{\em argc} & -\/ ilość argumentów w tablicy \\
+\hline
+{\em argv} & -\/ tablica argumentów \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_mapa_a5146461b9ba729d9824e6b0f2c3cd312}\label{class_mapa_a5146461b9ba729d9824e6b0f2c3cd312}} 
+\index{Mapa@{Mapa}!remove@{remove}}
+\index{remove@{remove}!Mapa@{Mapa}}
+\subsubsection{\texorpdfstring{remove()}{remove()}}
+{\footnotesize\ttfamily void Mapa\+::remove (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Uruchamia algorytmy czyszczące listy i drzewa \mbox{\Hypertarget{class_mapa_a80b6add069f75b6943244c2933d97b6a}\label{class_mapa_a80b6add069f75b6943244c2933d97b6a}} 
+\index{Mapa@{Mapa}!Szukaj\+Trasy@{Szukaj\+Trasy}}
+\index{Szukaj\+Trasy@{Szukaj\+Trasy}!Mapa@{Mapa}}
+\subsubsection{\texorpdfstring{Szukaj\+Trasy()}{SzukajTrasy()}}
+{\footnotesize\ttfamily bool Mapa\+::\+Szukaj\+Trasy (\begin{DoxyParamCaption}\item[{string \&}]{miasto1,  }\item[{string \&}]{miasto2,  }\item[{\mbox{\hyperlink{struct_trasa}{Trasa}} \&}]{trasa }\end{DoxyParamCaption})}
+
+Rekurencyjny algorytm swytyczania najkrótszej trasy z miasta A do miasta B 
+\begin{DoxyParams}{Parametry}
+{\em \mbox{\hyperlink{struct_miasto}{Miasto}}} & startowe \\
+\hline
+{\em \mbox{\hyperlink{struct_miasto}{Miasto}}} & szukane \\
+\hline
+{\em Obiekt} & zawierający dane na temat szukanej trasy \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Zwraca}
+Zwraca true jeśli trasa została znaleziona 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_mapa_a6651ec8e3fce840ae5f8e0d4b2c551b8}\label{class_mapa_a6651ec8e3fce840ae5f8e0d4b2c551b8}} 
+\index{Mapa@{Mapa}!Wczytaj\+Mape@{Wczytaj\+Mape}}
+\index{Wczytaj\+Mape@{Wczytaj\+Mape}!Mapa@{Mapa}}
+\subsubsection{\texorpdfstring{Wczytaj\+Mape()}{WczytajMape()}}
+{\footnotesize\ttfamily bool Mapa\+::\+Wczytaj\+Mape (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Wczytuje miasta i drogi z pliku \begin{DoxyReturn}{Zwraca}
+Zwraca true jeśli się powiodło 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_mapa_a898b171c3b98692cb71ced3959ef4702}\label{class_mapa_a898b171c3b98692cb71ced3959ef4702}} 
+\index{Mapa@{Mapa}!Wczytaj\+Trasy@{Wczytaj\+Trasy}}
+\index{Wczytaj\+Trasy@{Wczytaj\+Trasy}!Mapa@{Mapa}}
+\subsubsection{\texorpdfstring{Wczytaj\+Trasy()}{WczytajTrasy()}}
+{\footnotesize\ttfamily bool Mapa\+::\+Wczytaj\+Trasy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Wczytuje trasy do wyznaczenia z pliku \begin{DoxyReturn}{Zwraca}
+Zwraca true jeśli się powiodło 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_mapa_a4205fc2f39ebac415f9b76129a0c2c1d}\label{class_mapa_a4205fc2f39ebac415f9b76129a0c2c1d}} 
+\index{Mapa@{Mapa}!Wypisz\+Trasy@{Wypisz\+Trasy}}
+\index{Wypisz\+Trasy@{Wypisz\+Trasy}!Mapa@{Mapa}}
+\subsubsection{\texorpdfstring{Wypisz\+Trasy()}{WypiszTrasy()}}
+{\footnotesize\ttfamily void Mapa\+::\+Wypisz\+Trasy (\begin{DoxyParamCaption}\item[{ostream \&}]{stream }\end{DoxyParamCaption})}
+
+Wypisuje szczególy wytyczonych tras \mbox{\Hypertarget{class_mapa_a01487ae9138832312922ea23577fcac4}\label{class_mapa_a01487ae9138832312922ea23577fcac4}} 
+\index{Mapa@{Mapa}!Wytycz\+Trasy@{Wytycz\+Trasy}}
+\index{Wytycz\+Trasy@{Wytycz\+Trasy}!Mapa@{Mapa}}
+\subsubsection{\texorpdfstring{Wytycz\+Trasy()}{WytyczTrasy()}}
+{\footnotesize\ttfamily bool Mapa\+::\+Wytycz\+Trasy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Uruchamia algorytm szukania trasy dla każdej z tras do wyznaczenia \begin{DoxyReturn}{Zwraca}
+Zwraca true jeśli się powiodło 
+\end{DoxyReturn}
+
+
+\subsection{Dokumentacja atrybutów składowych}
+\mbox{\Hypertarget{class_mapa_a114a3a690e8eeea081e8ef25bb4561c9}\label{class_mapa_a114a3a690e8eeea081e8ef25bb4561c9}} 
+\index{Mapa@{Mapa}!miasta@{miasta}}
+\index{miasta@{miasta}!Mapa@{Mapa}}
+\subsubsection{\texorpdfstring{miasta}{miasta}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_miasta}{Miasta}} Mapa\+::miasta}
+
+Drzewo miast \mbox{\Hypertarget{class_mapa_aad92737082c0fc9bdc3cd16177b08bd3}\label{class_mapa_aad92737082c0fc9bdc3cd16177b08bd3}} 
+\index{Mapa@{Mapa}!trasy@{trasy}}
+\index{trasy@{trasy}!Mapa@{Mapa}}
+\subsubsection{\texorpdfstring{trasy}{trasy}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_lista}{Lista}}$<$\mbox{\hyperlink{struct_trasa}{Trasa}}$>$ Mapa\+::trasy}
+
+\mbox{\hyperlink{class_lista}{Lista}} tras zawierająca wyznaczone trasy \mbox{\Hypertarget{class_mapa_a1c030bb78d2e00479a4a0341540b48fe}\label{class_mapa_a1c030bb78d2e00479a4a0341540b48fe}} 
+\index{Mapa@{Mapa}!Trasy@{Trasy}}
+\index{Trasy@{Trasy}!Mapa@{Mapa}}
+\subsubsection{\texorpdfstring{Trasy}{Trasy}}
+{\footnotesize\ttfamily string Mapa\+::\+Trasy}
+
+Pliki 
+
+Dokumentacja dla tej klasy została wygenerowana z plików\+:\begin{DoxyCompactItemize}
+\item 
+pch.\+h\item 
+Mapa.\+class.\+cpp\end{DoxyCompactItemize}

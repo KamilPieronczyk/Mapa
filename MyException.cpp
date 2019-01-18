@@ -3,7 +3,7 @@
 
 MyException::MyException(type typ, const string & msg)
 {
-	switch (typ)
+	switch (typ) // sprawdza typ b³êdu i wywo³uje odpowiedni komunikat
 	{
 	case MyException::FileDoesNotExist:
 		this->errorMessage = "Plik '" + msg + "' nie istnieje";
@@ -19,5 +19,5 @@ MyException::MyException(type typ, const string & msg)
 
 const char * MyException::what() const throw()
 {
-	return this->errorMessage.c_str();
+	return this->errorMessage.c_str(); // zwraca wiadomoœæ o b³êdzie
 }

@@ -1,7 +1,7 @@
 #include "pch.h"
 int Miasta::size()
 {
-	return this->size(this->pHead);
+	return this->size(this->pHead); // uruchamia funkcje size
 }
 
 int Miasta::size(Miasto * pHead){
@@ -17,7 +17,7 @@ Miasto * & Miasta::operator[](string nazwa)
 	if (this->pHead == nullptr) { 
 		return this->pHead;
 	};
-	while(p){
+	while(p){ // wyszukiwanie miasta po drzewie miast
 		if(nazwa == p->nazwa) {
 			return p;
 		}
@@ -35,7 +35,7 @@ Miasto * & Miasta::operator[](string nazwa)
 
 void Miasta::PrzygotujMiasta()
 {
-	this->PrzygotujMiasta(this->pHead);
+	this->PrzygotujMiasta(this->pHead); // uruchamia funkcje PrzygotujMiasta
 }
 
 void Miasta::PrzygotujMiasta(Miasto *& miasto)
@@ -49,7 +49,7 @@ void Miasta::PrzygotujMiasta(Miasto *& miasto)
 
 void Miasta::remove()
 {
-	this->remove(this->pHead);
+	this->remove(this->pHead); // uruchamia funkcje remove
 }
 
 void Miasta::remove(Miasto * & pRoot)

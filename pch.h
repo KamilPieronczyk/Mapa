@@ -23,41 +23,60 @@
 using namespace std;
 
 struct Miasto;
+/** Struktura przechowująca droge do miasta i wskaźnik na nie */
 struct Droga
 {
-	int dlugosc;
-	Miasto * miasto;
+	int dlugosc; /**< dlugosc drogi */
+	Miasto * miasto; /**< wskaźnik na miasto do którego prowadzi droga */
 };
 
+
+/** Struktura gałęzi drzewa miast */
 struct Miasto
 {	
-	string nazwa;
-	Miasto * pPrawy = nullptr;
-	Miasto * pLewy = nullptr;
-	Lista<Droga> drogi;
+	string nazwa; /**< nazwa miasta */
+	Miasto * pPrawy = nullptr; /**< wskaźnik na miasto po prawej */
+	Miasto * pLewy = nullptr; /**< wskaźnik na miasto po lewej */
+	Lista<Droga> drogi; /**< Lista dróg wychodzących z miasta */
 	bool odwiedzone = false;
 };
-
+/** Struktura zawierająca dane na temat odcinka wytyczanej trasy pomiedzy dwoma miastami */
 struct OdcinekTrasy {
-	Miasto * miastoA = nullptr;
-	Miasto * miastoB = nullptr;
-	int odleglosc = 0;
+	Miasto * miastoA = nullptr; /**< wskaźnik na miasto początkowe */
+	Miasto * miastoB = nullptr; /**< wskaźnik na miasto końcowe */
+	int odleglosc = 0; /**< Odległość pomięzdy dwoma miastami */
 };
 
+/** Struktura zawierająca dane na temat wytyczanej trasy pomiędzy miastami */
 struct Trasa {
-	string miastoA, miastoB;
-	Lista<OdcinekTrasy> trasa;
-	Lista<OdcinekTrasy> mozliwaTrasa;
-	int dlugosc = 0;
-	int mozliwaDlugosc = 0;
+	string miastoA, /**< Nazwa miasta początkowego */
+		   miastoB; /**< Nazwa miasto końcowego */
+	Lista<OdcinekTrasy> trasa; /**< Lista odcinków trasy */
+	Lista<OdcinekTrasy> mozliwaTrasa; /**< Lista możliwych odcinków trasy (pomocnicza) */
+	int dlugosc = 0; /**< Odleglość z miastaA do miastaB */
+	int mozliwaDlugosc = 0; /**< Możliwa odleglość z miastaA do miastaB */
 };
 
+/** Klasa Miasta jest odpowiedzialna za wszelkie operacje na drzewie miast */
 class Miasta {
 public:
-	Miasto * pHead = nullptr;
+	Miasto * pHead = nullptr; /**< wskaźnik na pierwsze miasto */
+
+	/** Wielkość drzewa
+	* @return Zwraca ilość miast w drzewie (int)
+	*/
 	int size();
+
+	/**
+	* @param nazwa - nazwa miasta
+	* @return Zwraca referencje do miasta
+	*/
 	Miasto *& operator[](string nazwa);
+
+	/** Ustawia wartość odwiedzone miast na false */
 	void PrzygotujMiasta();
+
+	/** Czyści drzewo */
 	void remove();
 private:
 	void PrzygotujMiasta(Miasto *& miasto);
@@ -68,15 +87,45 @@ private:
 class Mapa
 {
 public:
-	Miasta miasta;
-	Lista<Trasa> trasy;
-	string Drogi, SzukaneTrasy, Trasy;
+	Miasta miasta; /**< Drzewo miast */
+
+	Lista<Trasa> trasy; /**< Lista tras zawierająca wyznaczone trasy */
+
+	string Drogi, SzukaneTrasy, Trasy; /**< Pliki */
+
+	/** Funckja inicjalizująca program, sprawdza parametry wejściowe
+	* @param argc - ilość argumentów w tablicy
+	* @param argv - tablica argumentów
+	*/
 	void Inicjalizacja(int argc,char *argv[]);
+
+	/** Wczytuje miasta i drogi z pliku
+	* @return Zwraca true jeśli się powiodło
+	*/
 	bool WczytajMape();
+
+	/** Wczytuje trasy do wyznaczenia z pliku
+	* @return Zwraca true jeśli się powiodło
+	*/
 	bool WczytajTrasy();
+
+	/** Uruchamia algorytm szukania trasy dla każdej z tras do wyznaczenia
+	* @return Zwraca true jeśli się powiodło
+	*/
 	bool WytyczTrasy();
+
+	/** Rekurencyjny algorytm wytyczania najkrótszej trasy z miasta A do miasta B
+	* @param Miasto startowe
+	* @param Miasto szukane
+	* @param Obiekt zawierający dane na temat szukanej trasy
+	* @return Zwraca true jeśli trasa została znaleziona
+	*/
 	bool SzukajTrasy(string & miasto1, string & miasto2, Trasa & trasa);
+
+	/** Wypisuje szczególy wytyczonych tras	*/
 	void WypiszTrasy(ostream & stream);
+
+	/** Uruchamia algorytmy czyszczące listy i drzewa */
 	void remove();
 };
 

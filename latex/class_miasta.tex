@@ -1,0 +1,78 @@
+\hypertarget{class_miasta}{}\section{Dokumentacja klasy Miasta}
+\label{class_miasta}\index{Miasta@{Miasta}}
+
+
+{\ttfamily \#include $<$pch.\+h$>$}
+
+\subsection*{Metody publiczne}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_miasta_a1f77750958b72a576e37039157741b88}{size}} ()
+\item 
+\mbox{\hyperlink{struct_miasto}{Miasto}} $\ast$\& \mbox{\hyperlink{class_miasta_ae709896387a043d6d0757e8ee2ebe1eb}{operator\mbox{[}$\,$\mbox{]}}} (string nazwa)
+\item 
+void \mbox{\hyperlink{class_miasta_a0ed245b8f82ddfde5299e173159cc4d5}{Przygotuj\+Miasta}} ()
+\item 
+void \mbox{\hyperlink{class_miasta_a62181d2fa245835be892f2beb966e1e6}{remove}} ()
+\end{DoxyCompactItemize}
+\subsection*{Atrybuty publiczne}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_miasto}{Miasto}} $\ast$ \mbox{\hyperlink{class_miasta_acd89fd213dfd8fbdc85daee30a22a460}{p\+Head}} = nullptr
+\end{DoxyCompactItemize}
+
+
+\subsection{Opis szczegółowy}
+Klasa \mbox{\hyperlink{class_miasta}{Miasta}} jest odpowiedzialna za wszelkie operacje na drzewie miast 
+
+\subsection{Dokumentacja funkcji składowych}
+\mbox{\Hypertarget{class_miasta_ae709896387a043d6d0757e8ee2ebe1eb}\label{class_miasta_ae709896387a043d6d0757e8ee2ebe1eb}} 
+\index{Miasta@{Miasta}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!Miasta@{Miasta}}
+\subsubsection{\texorpdfstring{operator[]()}{operator[]()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_miasto}{Miasto}} $\ast$\& Miasta\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{string}]{nazwa }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parametry}
+{\em nazwa} & -\/ nazwa miasta \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Zwraca}
+Zwraca referencje do miasta 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_miasta_a0ed245b8f82ddfde5299e173159cc4d5}\label{class_miasta_a0ed245b8f82ddfde5299e173159cc4d5}} 
+\index{Miasta@{Miasta}!Przygotuj\+Miasta@{Przygotuj\+Miasta}}
+\index{Przygotuj\+Miasta@{Przygotuj\+Miasta}!Miasta@{Miasta}}
+\subsubsection{\texorpdfstring{Przygotuj\+Miasta()}{PrzygotujMiasta()}}
+{\footnotesize\ttfamily void Miasta\+::\+Przygotuj\+Miasta (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Ustawia wartość odwiedzone miast na false \mbox{\Hypertarget{class_miasta_a62181d2fa245835be892f2beb966e1e6}\label{class_miasta_a62181d2fa245835be892f2beb966e1e6}} 
+\index{Miasta@{Miasta}!remove@{remove}}
+\index{remove@{remove}!Miasta@{Miasta}}
+\subsubsection{\texorpdfstring{remove()}{remove()}}
+{\footnotesize\ttfamily void Miasta\+::remove (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Czyści drzewo \mbox{\Hypertarget{class_miasta_a1f77750958b72a576e37039157741b88}\label{class_miasta_a1f77750958b72a576e37039157741b88}} 
+\index{Miasta@{Miasta}!size@{size}}
+\index{size@{size}!Miasta@{Miasta}}
+\subsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily int Miasta\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Wielkość drzewa \begin{DoxyReturn}{Zwraca}
+Zwraca ilość miast w drzewie (int) 
+\end{DoxyReturn}
+
+
+\subsection{Dokumentacja atrybutów składowych}
+\mbox{\Hypertarget{class_miasta_acd89fd213dfd8fbdc85daee30a22a460}\label{class_miasta_acd89fd213dfd8fbdc85daee30a22a460}} 
+\index{Miasta@{Miasta}!p\+Head@{p\+Head}}
+\index{p\+Head@{p\+Head}!Miasta@{Miasta}}
+\subsubsection{\texorpdfstring{p\+Head}{pHead}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_miasto}{Miasto}}$\ast$ Miasta\+::p\+Head = nullptr}
+
+wskaźnik na pierwsze miasto 
+
+Dokumentacja dla tej klasy została wygenerowana z plików\+:\begin{DoxyCompactItemize}
+\item 
+pch.\+h\item 
+Miasta.\+class.\+cpp\end{DoxyCompactItemize}
